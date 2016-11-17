@@ -297,7 +297,7 @@ class KindOfSong(Enumeration):
     
     class Meta(MetaEnumeration):
         db_table = 'knidofsong'
-        verbose_name = _("kind of song")
+        verbose_name = u"genre de chanson" #_("kind of song")
 
         
 class KindOfShortSong(Enumeration):
@@ -305,7 +305,7 @@ class KindOfShortSong(Enumeration):
     
     class Meta(MetaEnumeration):
         db_table = 'knidofshortsong'
-        verbose_name = _("kind of short song")
+        verbose_name = u"genre de chanson courte" #_("kind of short song")
 
 
 class KindOfTale(Enumeration):
@@ -313,7 +313,7 @@ class KindOfTale(Enumeration):
     
     class Meta(MetaEnumeration):
         db_table = 'knidoftale'
-        verbose_name = _("kind of tale")
+        verbose_name = u"genre de conte" #_("kind of tale")
 
 
 class FunctionMSHS(Enumeration):

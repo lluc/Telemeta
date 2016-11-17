@@ -35,7 +35,7 @@ class MediaCorpus(MediaBaseResource):
     children_type = 'collections'
 
     children = models.ManyToManyField(MediaCollection, related_name="corpus",
-                                      verbose_name=_('collections'),  blank=True, null=True)
+                                      verbose_name=u"Enquêtes",  blank=True, null=True)
     recorded_from_year    = IntegerField(_('recording year (from)'), help_text=_('YYYY'))
     recorded_to_year      = IntegerField(_('recording year (until)'), help_text=_('YYYY'))
 
@@ -63,15 +63,15 @@ class MediaCorpus(MediaBaseResource):
 
     class Meta(MetaCore):
         db_table = 'media_corpus'
-        verbose_name = _('corpus')
-        verbose_name_plural = _('corpus')
+        verbose_name = u"Mission"
+        verbose_name_plural = u"Missions"
         ordering = ['code']
 
 
 class MediaCorpusRelated(MediaRelated):
     "Corpus related media"
 
-    resource = ForeignKey(MediaCorpus, related_name="related", verbose_name=_('corpus'))
+    resource = ForeignKey(MediaCorpus, related_name="related", verbose_name="mission")
 
     class Meta(MetaCore):
         db_table = 'media_corpus_related'

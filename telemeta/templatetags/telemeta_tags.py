@@ -257,7 +257,7 @@ def resources_num(value):
         label = ungettext('%(count)d item', '%(count)d items', count) % {
             'count': count, }
     elif model == models.MediaCollection:
-        label = ungettext('%(count)d collection', '%(count)d collections', count) % {
+        label = ungettext('%(count)d enquete', '%(count)d enquetes', count) % {
             'count': count, }
 
     return label

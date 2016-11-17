@@ -3,12 +3,12 @@
 {% load i18n %}
 {% load bootstrap_pagination %}
 
-{% block head_title %}{% trans "Collections" %} - {{ block.super }}{% endblock %}
+{% block head_title %} Enquêtes - {{ block.super }}{% endblock %}
 
 {% block title%}
 <div class='row'>
 <div class="col-md-4">
- <img src="{{ STATIC_URL }}telemeta/images/collections_red.png" style="vertical-align:middle" /> {% trans "Collections" %} ({{ page_obj.start_index }} - {{ page_obj.end_index }} / {{ count }})
+ <img src="{{ STATIC_URL }}telemeta/images/collections_red.png" style="vertical-align:middle" /> Enquêtes ({{ page_obj.start_index }} - {{ page_obj.end_index }} / {{ count }})
 </div>
 <div class="col-md-8">
 {% bootstrap_paginate page_obj range=10 show_first_last="True" %}
