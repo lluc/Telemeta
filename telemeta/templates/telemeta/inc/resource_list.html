@@ -7,6 +7,7 @@
 <tr>
     <th class="highlight" width="15%">{% trans "Title" %}</th>
     <th width="5%">{% trans "Digitized" %}</th>
+    <th>Période</th>
     <th>{% trans "Description" %}</th>
     <th width="15%">{% trans "Code" %}</th>
 
@@ -20,6 +21,7 @@
        <center><span class="glyphicon glyphicon-volume-up" style="font-size: 1.3em;"></span></center>
       {% endif %}
     </td>
+    <td>{{ resource.period }}</td>
     <td>{{ resource.descriptions_markdown|safe }}</td>
     <td>{{ resource.code }}</td>
 

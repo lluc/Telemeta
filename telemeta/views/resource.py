@@ -208,6 +208,37 @@ class ResourceMixin(View):
         context['type'] = self.type
         return context
 
+    def get_collections(self, resource):
+        collections = []
+        # Select the collections
+        if self.type=='fonds' :
+            corpus = resource.children.all()
+            for corps in corpus :
+                collections = corps.children.all()
+        else :
+            collections = resource.children.all()
+
+        return collections
+
+    def get_period(self, collections):
+        from_year = 10000
+        until_year = 0
+
+        for collection in collections :
+            if collection.recorded_from_year :
+                f_y = collection.recorded_from_year.year
+                if f_y < from_year and f_y > 0 :
+                    from_year = f_y
+            if collection.recorded_to_year :
+                u_y = collection.recorded_to_year.year
+                if u_y > until_year:
+                    until_year = u_y
+                else :
+                    if f_y > until_year :
+                        until_year = f_y
+
+        return( from_year, until_year)
+
 
 class ResourceSingleMixin(ResourceMixin):
 
@@ -236,14 +267,7 @@ class ResourceSingleMixin(ResourceMixin):
         else:
             context['parents'] = []
 
-        collections = []
-        # Select the collections
-        if self.type=='fonds' :
-            corpus = resource.children.all()
-            for corps in corpus :
-                collections = corps.children.all()
-        else :
-            collections = resource.children.all()
+        collections = self.get_collections(resource)
 
         # Collectors
         collectors = []
@@ -280,24 +304,10 @@ class ResourceSingleMixin(ResourceMixin):
         context['locations'] = locations
 
         # Recording year ( collected from collections )
-        from_year = 10000
-        until_year = 0
-
-        for collection in collections :
-            if collection.recorded_from_year :
-                f_y = collection.recorded_from_year.year
-                if f_y < from_year and f_y > 0 :
-                    from_year = f_y
-            if collection.recorded_to_year :
-                u_y = collection.recorded_to_year.year
-                if u_y > until_year:
-                    until_year = u_y
-                else :
-                    if f_y > until_year :
-                        until_year = f_y
-
-        context['from_year'] = from_year
-        context['until_year'] = until_year
+        if collections :
+            from_year, until_year = self.get_period(collections)
+            context['from_year'] = from_year
+            context['until_year'] = until_year
 
         return context
 
@@ -321,6 +331,16 @@ class ResourceListView(ResourceMixin, ListView):
 class ResourceDetailView(ResourceSingleMixin, DetailView):
 
     template_name = "telemeta/resource_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ResourceDetailView, self).get_context_data(**kwargs)
+        resource = self.get_object()
+        collections = self.get_collections(resource)
+        if collections :
+            from_year, until_year = self.get_period(collections)
+            context['from_year'] = from_year
+            context['until_year'] = until_year
+        return context
 
 
 class ResourceDetailDCView(ResourceDetailView):

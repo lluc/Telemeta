@@ -77,6 +77,31 @@ class MediaFonds(MediaBaseResource):
         return duration
     computed_duration.verbose_name = _('total available duration')
 
+    def period(self):
+        from_year = 10000
+        until_year = 0
+        label=""
+
+        for corps in self.children.all() :
+            for collection in corps.children.all() :
+                if collection.recorded_from_year :
+                    f_y = collection.recorded_from_year.year
+                    if f_y < from_year and f_y > 0 :
+                        from_year = f_y
+                if collection.recorded_to_year :
+                    u_y = collection.recorded_to_year.year
+                    if u_y > until_year:
+                        until_year = u_y
+                    else :
+                        if f_y > until_year :
+                            until_year = f_y
+        if( from_year != 10000 ):
+            label = label+str(from_year)
+        if( until_year != 0 ):
+            label =  label+" - "+str(until_year)
+        return( label)
+    period.verbose_name = _('period')
+
     class Meta(MetaCore):
         db_table = 'media_fonds'
         verbose_name = _('fonds')
