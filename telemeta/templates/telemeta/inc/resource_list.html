@@ -6,6 +6,9 @@
 <table class="listing">
 <tr>
     <th class="highlight" width="15%">{% trans "Title" %}</th>
+     {% if type == 'fonds' %}
+     <th>Institution</th>
+     {% endif %}
     <th width="5%">{% trans "Digitized" %}</th>
     <th>Période</th>
     <th>{% trans "Description" %}</th>
@@ -17,6 +20,13 @@
     <td class="highlight">
         <a href="{% url "telemeta-resource-detail" type resource.public_id %}">{{ resource.title }}</a>
     </td>
+    {% if type == 'fonds' %}
+    <td>
+        {% if resource.institution_id %}
+        <a href="{% url "telemeta-institutions-detail" resource.institution_id %}">{{ resource.institution }}</a>
+        {% endif %}
+    </td>
+    {% endif %}
     <td>{% if resource.has_mediafile %}
        <center><span class="glyphicon glyphicon-volume-up" style="font-size: 1.3em;"></span></center>
       {% endif %}
