@@ -8,6 +8,7 @@
     <th class="highlight">{% trans "Title" %}</th>
     <th>{% trans "Digitized" %}</th>
     <th>{% trans "Collectors" %}</th>
+    <th>Informateur(s)</th>
     <th>{% trans "Recording period" %}</th>
     <th>{% trans "Code" %}</th>
 </tr>
@@ -25,6 +26,13 @@
         {% if collection.collectors %}
             {% for col in collection.collectors.all %}
                 {{ col }},
+            {% endfor %}
+        {% endif %}
+    </td>
+    <td>
+        {% if collection.informer %}
+            {% for informer in collection.informer.all %}
+                {{ informer }},
             {% endfor %}
         {% endif %}
     </td>
