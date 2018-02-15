@@ -1,12 +1,23 @@
 {% load telemeta_tags %}
 {% load i18n %}
 
+{% block extra_stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/lists_sorttable.css" media="print, projection, screen"/>
+{% endblock %}
+
 {% block extra_javascript %}
 <script src="{{ STATIC_URL }}telemeta/js/popupdiv.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}telemeta/js/playlist.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% if items %}
+
+    <script>
+    $(document).ready(function() {
+        $("#tableitems").tablesorter();
+    });
+    </script>
     {% if user.is_authenticated %}
 
 <form action="{% url "playlist"%}" method="post">
@@ -14,7 +25,7 @@
 
 {% endif %}
 
-<table class="listing">
+<table id="tableitems" class="listing">
 <thead>
 <tr>
     <th></th>

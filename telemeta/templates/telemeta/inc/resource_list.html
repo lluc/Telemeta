@@ -2,19 +2,25 @@
 {% load i18n %}
 
 {% if object_list %}
+<script>
+$(document).ready(function() {
+    $("#tableresources").tablesorter();
+});
+</script>
+<table id="tableresources" class="listing">
+    <thead>
+        <tr>
+            <th class="highlight" width="15%">{% trans "Title" %}</th>
+             {% if type == 'fonds' %}
+             <th>Institution</th>
+             {% endif %}
+            <th width="5%">{% trans "Digitized" %}</th>
+            <th>Période</th>
+            <th>{% trans "Description" %}</th>
+            <th width="15%">{% trans "Code" %}</th>
 
-<table class="listing">
-<tr>
-    <th class="highlight" width="15%">{% trans "Title" %}</th>
-     {% if type == 'fonds' %}
-     <th>Institution</th>
-     {% endif %}
-    <th width="5%">{% trans "Digitized" %}</th>
-    <th>Période</th>
-    <th>{% trans "Description" %}</th>
-    <th width="15%">{% trans "Code" %}</th>
-
-</tr>
+        </tr>
+    </thead>
 {% for resource in object_list %}
 <tr {% if not forloop.counter0|divisibleby:"2" %}class="odd"{% endif %}>
     <td class="highlight">

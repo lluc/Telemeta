@@ -3,6 +3,17 @@
 {% load i18n %}
 {% load bootstrap_pagination %}
 
+{% block extra_stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/lists_sorttable.css" media="print, projection, screen"/>
+{% endblock %}
+
+{% block extra_javascript %}
+<script src="{{ STATIC_URL }}telemeta/js/popupdiv.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block head_title %}{% trans type %} - {{ block.super }}{% endblock %}
 
 {% block title%}
