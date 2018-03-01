@@ -101,7 +101,7 @@ class MediaCollectionForm(ModelForm):
             required=False
         )
         self.fields["informer"] = forms.ModelMultipleChoiceField(
-            queryset = Authority.objects.all(),
+            queryset = Authority.objects.all().filter(roles__contains='INF'),
             widget=Select2MultipleWidget(
             attrs={
                 'title': 'Liste des informateurs',
@@ -111,7 +111,7 @@ class MediaCollectionForm(ModelForm):
             required=False
         )
         self.fields["collectors"] = forms.ModelMultipleChoiceField(
-            queryset = Authority.objects.all(),
+            queryset = Authority.objects.all().filter(roles__contains='ENQ'),
             widget=Select2MultipleWidget(
             attrs={
                 'title': 'Liste des enquêteurs',
@@ -131,7 +131,7 @@ class MediaCollectionForm(ModelForm):
             required=False
         )
         self.fields["booklet_author"] = forms.ModelMultipleChoiceField(
-            queryset = Authority.objects.all(),
+            queryset = Authority.objects.all().filter(roles__contains='AUT'),
             widget=Select2MultipleWidget(
             attrs={
                 'title': 'Editeurs',
