@@ -270,7 +270,7 @@ def auto_code(collection):
                 suffixes.append(suffix)
 
     if suffixes:
-        return collection.code + '_' + str(max(suffixes) + 1)
+        return collection.code + '_' + str(max(suffixes) + 1).zfill(3)
     else:
         return collection.code + '_001'
 
