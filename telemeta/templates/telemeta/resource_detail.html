@@ -121,9 +121,7 @@ jQuery(document).ready(function(){
               {% if type == 'corpus' %}
                   <dt>{% trans "locations"|capitalize %}</dt>
                   <dd>
-                      {% for location in locations %}
-                          {{location}},
-                      {% endfor %}
+                      {{ locations|join:", " }}
                   </dd>
               {% endif %}
 
@@ -131,14 +129,20 @@ jQuery(document).ready(function(){
               <dt>{% trans "collectors"|capitalize %}</dt>
               <dd>
                     {% for collector in collectors %}
-                        <a href="{% url "telemeta-authorities-detail" collector.id %}">{{ collector }}</a>,
+                        <a href="{% url "telemeta-authorities-detail" collector.id %}">{{ collector }}</a>
+                        {% if not forloop.last %}
+                        ,
+                        {% endif %}
                     {% endfor %}
               </dd>
               <!-- Informers -->
               <dt>{% trans "informers"|capitalize %}</dt>
               <dd>
                     {% for informer in informers %}
-                        <a href="{% url "telemeta-authorities-detail" informer.id %}">{{ informer }}</a>,
+                        <a href="{% url "telemeta-authorities-detail" informer.id %}">{{ informer }}</a>
+                        {% if not forloop.last %}
+                        ,
+                        {% endif %}
                     {% endfor %}
               </dd>
 

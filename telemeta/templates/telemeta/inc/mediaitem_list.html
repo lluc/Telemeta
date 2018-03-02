@@ -1,12 +1,23 @@
 {% load telemeta_tags %}
 {% load i18n %}
 
+{% block extra_stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}telemeta/css/lists_sorttable.css" media="print, projection, screen"/>
+{% endblock %}
+
 {% block extra_javascript %}
 <script src="{{ STATIC_URL }}telemeta/js/popupdiv.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}telemeta/js/playlist.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
 {% endblock %}
 
 {% if items %}
+
+    <script>
+    $(document).ready(function() {
+        $("#tableitems").tablesorter();
+    });
+    </script>
     {% if user.is_authenticated %}
 
 <form action="{% url "playlist"%}" method="post">
@@ -14,19 +25,20 @@
 
 {% endif %}
 
-<table class="listing">
+<table id="tableitems" class="listing">
 <thead>
 <tr>
     <th></th>
     <th>{% trans "Title" %}</th>
     <th>{% trans "Digitized" %}</th>
     <th>Enquêteur(s)</th>
+    <th>Informateur(s)</th>
     {% if location_name %}
     <th>{% trans "Location" %}</th>
     {% else %}
     <th>Lieux</th>
     {% endif %}
-    <th>{% trans "Year of recording" %}</th>
+    <th>Date d'enregistrement</th>
     <th>{% trans "Code" %}</th>
     {% if user.is_authenticated %}
     <th class="highlight"><input id="selectAll" type="checkbox"/> Tout sélectionner </th>
@@ -53,23 +65,24 @@
 
     <td>
         {% if item.collectors %}
-            {% for col in item.collectors.all %}
-                {{ col }},
-            {% endfor %}
+            {{ item.collectors.all|join:", " }}
+        {% endif %}
+    </td>
+    <td>
+        {% if item.informer %}
+            {{ item.mshs_informer.all|join:", " }}
         {% endif %}
     </td>
     <td>
         {% if item.collection.location.all %}
-            {% for loc in item.collection.location.all %}
-                {{ loc }},
-            {% endfor %}
+            {{ item.collection.location.all|join:", " }}
         {% endif %}
     </td>
     <td>
     {% if item.collection.recorded_from_year %}
-        {{ item.collection.recorded_from_year.year }}
+        {{ item.collection.recorded_from_year }}
         {% if item.collection.recorded_to_year and not item.collection.recorded_to_year.year|equals:item.collection.recorded_from_year.year %}
-            - {{ item.collection.recorded_to_year.year }}
+            - {{ item.collection.recorded_to_year}}
         {% endif %}
     {% endif %}
     </td>

@@ -1,4 +1,5 @@
 {% load telemeta_tags %}
+{% load mshs_tags %}
 {% load i18n %}
 
 {% if authorities %}
@@ -8,6 +9,7 @@
     <th class="highlight">Nom</th>
     <th>Prénom</th>
     <th>Alias</th>
+    <th>Rôles</th>
 </tr>
 {% for authority in authorities %}
 <tr {% if not forloop.counter0|divisibleby:"2" %}class="odd"{% endif %}>
@@ -17,6 +19,7 @@
     </td>
     <td>{{ authority.first_name }}</td>
     <td>{{ authority.alias }}</td>
+    <td>{{ authority.roles|label_role }}</td>
 </tr>
 {% endfor %}
 

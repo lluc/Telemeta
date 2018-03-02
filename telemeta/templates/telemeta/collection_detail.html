@@ -101,13 +101,19 @@
                 <dt>Enquêteurs</dt>
                 <dd>
                     {% for collec in collection.collectors.all %}
-                        <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>,
+                        <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>
+                        {% if not forloop.last %}
+                        ,
+                        {% endif %}
                     {% endfor %}
                 </dd>
                 <dt>Informateurs</dt>
                 <dd>
                     {% for collec in collection.informer.all %}
-                        <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>,
+                        <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>
+                        {% if not forloop.last %}
+                        ,
+                        {% endif %}
                     {% endfor %}
                 </dd>
                 {% if collection.description %}
@@ -133,19 +139,15 @@
                     <dl class="listing">
                         <dt>{% trans "location" %}</dt>
                         <dd>
-                            {% for loc in collection.location.all %}
-                                {{loc}},
-                            {% endfor %}
+                            {{ collection.location.all|join:"," }}
                         </dd>
-                        <dt>{% trans "location details" %}</dt>
+                        <dt>Précisions lieu</dt>
                         <dd>{{ collection.location_details_markdown|safe }}</dd>
                         {% dl_field collection "cultural_area" %}
                         {% if collection.language_iso.all %}
                         <dt>{% trans "Language (ISO norm)" %}</dt>
                         <dd>
-                            {% for collec in collection.language_iso.all %}
-                                {{collec}},
-                            {% endfor %}
+                            {{ collection.language_iso.all|join:", " }}
                         </dd>
                         {% endif %}
                         {% dl_field collection "language" %}
@@ -168,19 +170,15 @@
                           {% endif%}
                         {% endif %}
                         {% if collection.publisher.all %}
-                         <dt>{% trans "publisher" %}</dt>
+                         <dt>Éditeur</dt>
                          <dd>
-                             {% for publi in collection.publisher.all %}
-                             {{ publi }},
-                             {% endfor %}
+                             {{ collection.publisher.all|join:"," }}
                          </dd>
                         {% endif %}
                         {% if collection.publisher_collection.all %}
                         <dt>{% trans "publisher collection" %}</dt>
                         <dd>
-                            {% for publi in collection.publisher_collection.all %}
-                            {{ publi }},
-                            {% endfor %}
+                            {{ collection.publisher_collection.all|join:"," }}
                         </dd>
                         {% endif %}
                         {% dl_field collection "publisher_serial" %}

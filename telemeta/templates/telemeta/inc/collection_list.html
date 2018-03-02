@@ -2,15 +2,23 @@
 {% load i18n %}
 
 {% if collections %}
+<script>
+$(document).ready(function() {
+    $("#tablecollections2").tablesorter();
+});
+</script>
+<table id="tablecollections2" class="listing">
+<thead>
+    <tr>
+        <th class="highlight">{% trans "Title" %}</th>
+        <th>{% trans "Digitized" %}</th>
+        <th>{% trans "Collectors" %}</th>
+        <th>Informateur(s)</th>
+        <th>{% trans "Recording period" %}</th>
+        <th>{% trans "Code" %}</th>
+    </tr>
+</thead>
 
-<table class="listing">
-<tr>
-    <th class="highlight">{% trans "Title" %}</th>
-    <th>{% trans "Digitized" %}</th>
-    <th>{% trans "Collectors" %}</th>
-    <th>{% trans "Recording period" %}</th>
-    <th>{% trans "Code" %}</th>
-</tr>
 {% for collection in collections %}
 <tr {% if not forloop.counter0|divisibleby:"2" %}class="odd"{% endif %}>
     <td class="highlight">
@@ -23,9 +31,12 @@
     </td>
     <td>
         {% if collection.collectors %}
-            {% for col in collection.collectors.all %}
-                {{ col }},
-            {% endfor %}
+            {{ collection.collectors.all|join:", " }}
+        {% endif %}
+    </td>
+    <td>
+        {% if collection.informer %}
+            {{ collection.informer.all|join:", " }}
         {% endif %}
     </td>
     <td>

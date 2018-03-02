@@ -18,6 +18,14 @@ class Authority(ModelCore):
     first_name = CharField(_('first name') )
     civilite =  CharField(_('civilite') )
     alias =  CharField( _('alias') )
+    ROLES = (
+        ('ENQ','Enquêteur'),
+        ('INF','Informateur'),
+        ('AUT','Auteur'),
+        ('CMP','Compositeur'),
+        ('EDT','Editeur')
+    )
+    roles = CharField(_('Roles'),choices=ROLES)
     birth_date = DateField(null=True)
     birth_location = ForeignKey('Location', related_name='birth_location', verbose_name=_('birth location'), blank=True, null=True, on_delete=models.SET_NULL)
     death_date = DateField( null=True )

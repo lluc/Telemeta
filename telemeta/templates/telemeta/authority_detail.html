@@ -1,5 +1,6 @@
 {% extends "telemeta/base.html" %}
 {% load telemeta_tags %}
+{% load mshs_tags %}
 {% load i18n %}
 {% load bootstrap_pagination %}
 
@@ -43,6 +44,8 @@
         <dd>{{ authority.civilite }}</dd>
         <dt>{% trans "alias" %}</dt>
         <dd>{{ authority.alias }}</dd>
+        <dt>Rôles</dt>
+        <dd>{{ authority.roles|label_role }}</dd>
     </dl>
 
     <div>

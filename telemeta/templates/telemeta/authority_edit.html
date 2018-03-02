@@ -42,6 +42,10 @@
     {% bootstrap_field form.first_name %}
     {% bootstrap_field form.civilite %}
     {% bootstrap_field form.alias %}
+    <div class="form-group">
+        <label class="control-label">Rôles</label>
+        {{ form.role }}
+    </div>
     <div class="block-grey">
         <h2>Naissance</h2>
         {% bootstrap_field form.birth_date %}
