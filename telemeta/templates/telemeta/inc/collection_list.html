@@ -31,16 +31,12 @@ $(document).ready(function() {
     </td>
     <td>
         {% if collection.collectors %}
-            {% for col in collection.collectors.all %}
-                {{ col }},
-            {% endfor %}
+            {{ collection.collectors.all|join:", " }}
         {% endif %}
     </td>
     <td>
         {% if collection.informer %}
-            {% for informer in collection.informer.all %}
-                {{ informer }},
-            {% endfor %}
+            {{ collection.informer.all|join:", " }}
         {% endif %}
     </td>
     <td>

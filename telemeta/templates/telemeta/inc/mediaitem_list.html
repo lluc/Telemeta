@@ -65,23 +65,17 @@
 
     <td>
         {% if item.collectors %}
-            {% for col in item.collectors.all %}
-                {{ col }},
-            {% endfor %}
+            {{ item.collectors.all|join:", " }}
         {% endif %}
     </td>
     <td>
         {% if item.informer %}
-            {% for informer in item.mshs_informer.all %}
-                {{ informer }},
-            {% endfor %}
+            {{ item.mshs_informer.all|join:", " }}
         {% endif %}
     </td>
     <td>
         {% if item.collection.location.all %}
-            {% for loc in item.collection.location.all %}
-                {{ loc }},
-            {% endfor %}
+            {{ item.collection.location.all|join:", " }}
         {% endif %}
     </td>
     <td>

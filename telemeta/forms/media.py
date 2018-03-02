@@ -137,7 +137,7 @@ class MediaCollectionForm(ModelForm):
                 'title': 'Editeurs',
                 'data-width':'100%',
                 }),
-            label=_("booklet author"),
+            label="Auteur de la notice éditée",
             required=False
         )
         self.fields["description"] = MarkdownxFormField()
@@ -265,7 +265,7 @@ class MediaItemForm(ModelForm):
             ["mshs_domain_vocal","Genre(s) de l'Autre expression vocale"],
             ["mshs_domain_music","Genre(s) de l'expression instrumentale"],
             ["mshs_domain_tale","Genre(s) du Conte"],
-            ["mshs_function","Fonctions(s)"],
+            ["mshs_function","Fonction(s)"],
             ["mshs_dance","Danse(s)"],
             ["mshs_dance_details","Précisions sur la danse"],
             ["mshs_deposit_thematic","Thématique(s)"],
@@ -284,9 +284,9 @@ class MediaItemForm(ModelForm):
 
         self.fields["description"] = MarkdownxFormField(label=_('Description'))
         self.fields["description"].required = False
-        self.fields["mshs_deposit_digest"] = MarkdownxFormField( label=_('Digest'))
+        self.fields["mshs_deposit_digest"] = MarkdownxFormField( label=('Résumé'))
         self.fields["mshs_deposit_digest"].required = False
-        self.fields["mshs_dance_details"] = MarkdownxFormField( label=('Précisions dur la danse'))
+        self.fields["mshs_dance_details"] = MarkdownxFormField( label=('Précisions sur la danse'))
         self.fields["mshs_dance_details"].required = False
         self.fields["mshs_text"] = MarkdownxFormField(label=_('Text'))
         self.fields["mshs_text"].required = False

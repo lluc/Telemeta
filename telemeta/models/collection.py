@@ -71,7 +71,7 @@ class MediaCollection(MediaResource):
     # Geographic and cultural informations
     # See "countries" and "ethnic_groups" methods below
     location              = models.ManyToManyField('Location', related_name="locations", verbose_name=_('location'), blank=True, null=True)
-    location_details      = MarkdownxField(_('location details'), blank=True)
+    location_details      = MarkdownxField( blank=True)
     cultural_area         = CharField(_('cultural area'), help_text=_('Cultural area ; Cultural area'))
     language_iso          = models.ManyToManyField('Language', related_name="collections", verbose_name=_('Language (ISO norm)'), blank=True, null=True)
     language              = CharField(_('language'), help_text=_('Language ; language'))
