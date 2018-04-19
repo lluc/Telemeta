@@ -24,6 +24,17 @@ class AuthorityForm(ModelForm):
         if self.instance and self.instance.pk:
             self.fields['role'].initial = self.instance.roles.split(',')
 
+        translations = [
+            ["civilite","Civilité"],
+            ["birth_date","Date de naissance"],
+            ["birth_location","Lieu de naissance"],
+            ["death_date","Date de décès"],
+            ["death_location","Lieu de décès"]
+        ]
+
+        for t in translations :
+            self.fields[t[0]].label=t[1]
+
         # if you want to do it to all of them
         for field in self.fields.values():
             field.error_messages = {'required':'Le champ {fieldname} est obligatoire'.format(fieldname=field.label),'blank':'Le champ {fieldname} est vide'.format(fieldname=field.label), 'null':'Le champ {fieldname} est de valeur null'.format(fieldname=field.label)}

@@ -36,11 +36,11 @@
 
 {% block content %}
     <dl class="listing">
-        <dt>{% trans "first name" %}</dt>
+        <dt>Prénom</dt>
         <dd>{{ authority.first_name }}</dd>
-        <dt>{% trans "last name" %}</dt>
+        <dt>Nom</dt>
         <dd>{{ authority.last_name }}</dd>
-        <dt>{% trans "civilite" %}</dt>
+        <dt>Civilité</dt>
         <dd>{{ authority.civilite }}</dd>
         <dt>{% trans "alias" %}</dt>
         <dd>{{ authority.alias }}</dd>
@@ -52,21 +52,21 @@
         <h4><a href="#">{% trans "biography" %}</a></h4>
         <div>
             <dl class="listing">
-                <dt>{% trans "birth date" %}</dt>
+                <dt>Date de naissance</dt>
                 <dd>{% if authority.birth_date %}
                     {{ authority.birth_date}}
                     {%endif%}
                 </dd>
-                <dt>{% trans "birth location" %}</dt>
+                <dt>Lieu de naissance</dt>
                 <dd>{{ authority.birth_location.name }}</dd>
-                <dt>{% trans "death date" %}</dt>
+                <dt>Date de décès</dt>
                 <dd>{% if authority.death_date %}
                     {{ authority.death_date}}
                     {%endif%}
                 </dd>
-                <dt>{% trans "death location" %}</dt>
+                <dt>Lieu de décès</dt>
                 <dd>{{ authority.death_location.name }}</dd>
-                <dt>{% trans "biography" %}</dt>
+                <dt>Biographie</dt>
                 <dd>{{ authority.biography_markdown | safe }}</dd>
                 <dt>{% trans "URI" %}</dt>
                 <dd>{{ authority.uri }}</dd>
