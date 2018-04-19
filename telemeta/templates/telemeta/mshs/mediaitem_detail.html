@@ -16,13 +16,20 @@
         <dt>Enquêteur(s)</dt>
         <dd>
             {% for collec in item.collectors.all %}
-                <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>,
+                <a href="{% url "telemeta-authorities-detail" collec.id %}">{{ collec }}</a>
+                {%if not forloop.last %}
+                ,
+                {% endif %}
             {% endfor %}
+
         </dd>
         <dt>Informateur(s)</dt>
         <dd>
             {% for inform in item.informer.all %}
-                <a href="{% url "telemeta-authorities-detail" inform.id %}">{{ inform }}</a>,
+                <a href="{% url "telemeta-authorities-detail" inform.id %}">{{ inform }}</a>
+                {%if not forloop.last %}
+                ,
+                {% endif %}
             {% endfor %}
         </dd>
         <dt>Date d'enregistrement</dt>
@@ -38,7 +45,10 @@
                 <dt>{% trans "Location" %}</dt>
                 <dd>
                     {% for loc in item.collection.location.all %}
-                        {{ loc }},
+                        {{ loc }}
+                        {%if not forloop.last %}
+                        ,
+                        {% endif %}
                     {% endfor %}
                 </dd>
                 {% dl_field item "location_comment" %}
@@ -46,7 +56,10 @@
                 <dd>
                     {% if item.language_iso.all %}
                         {% for lang in item.language_iso.all %}
-                            {{ lang }},
+                            {{ lang }}
+                            {%if not forloop.last %}
+                            ,
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </dd>
