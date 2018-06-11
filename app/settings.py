@@ -175,6 +175,7 @@ INSTALLED_APPS = (
     'extra_views',
     'debug_toolbar',
     'bootstrap3',
+    'bootstrap_datepicker',
     'bootstrap_pagination',
     'registration',
     'rest_framework',

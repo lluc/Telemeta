@@ -10,6 +10,7 @@ from telemeta.models import Authority
 from django.utils.translation import ugettext_lazy as _
 
 from markdownx.fields import MarkdownxFormField
+from bootstrap_datepicker.widgets import DatePicker
 
 class AuthorityForm(ModelForm):
 
@@ -21,6 +22,14 @@ class AuthorityForm(ModelForm):
         super(AuthorityForm, self).__init__(*args, **kwargs)
         self.fields["biography"] = MarkdownxFormField(label="Biographie")
         self.fields["biography"].required = False
+        self.fields["birth_date"] = forms.DateField(
+            widget=DatePicker(
+                options={
+                    "format": "mm/dd/yyyy",
+                    "autoclose": True
+                }
+            )
+        )
         if self.instance and self.instance.pk:
             self.fields['role'].initial = self.instance.roles.split(',')
 

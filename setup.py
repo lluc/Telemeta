@@ -58,6 +58,7 @@ setup(
         'django-extra-views',
         'django-breadcrumbs',
         'django-bootstrap3==8.1.0',
+        'django-bootstrap_datepicker',
         'django-bootstrap-pagination',
         'django-json-rpc',
         'django-suit',
