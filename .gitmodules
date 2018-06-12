@@ -11,3 +11,6 @@
 [submodule "lib/TimeSide"]
 	path = lib/TimeSide
 	url = https://github.com/Parisson/TimeSide.git
+[submodule "Telemeta-pages"]
+	path = Telemeta-pages
+	url = https://github.com/lluc/Telemeta-pages.git
