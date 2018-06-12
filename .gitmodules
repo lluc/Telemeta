@@ -1,6 +1,3 @@
-[submodule "telemeta/pages"]
-	path = telemeta/pages
-	url = https://github.com/Parisson/Telemeta-pages.git
 [submodule "telemeta/locale"]
 	path = telemeta/locale
 	url = https://github.com/lluc/Telemeta-locales.git
@@ -11,6 +8,6 @@
 [submodule "lib/TimeSide"]
 	path = lib/TimeSide
 	url = https://github.com/Parisson/TimeSide.git
-[submodule "Telemeta-pages"]
-	path = Telemeta-pages
+[submodule "telemeta/pages"]
+	path = telemeta/pages
 	url = https://github.com/lluc/Telemeta-pages.git
