@@ -34,7 +34,7 @@ data:
   command: "true"
 
 db:
-  image: mysql
+  image: mysql:5
   volumes:
     - ./scripts/:/srv/scripts
     - ./data/mysql/:/var/lib/mysql
@@ -50,7 +50,7 @@ search:
   image: elasticsearch:1
 
 app:
-  build: .
+  image: fe9ca871c86e
   volumes:
     - ./app:/srv/app
     - ./telemeta:/srv/src/telemeta/telemeta
@@ -67,7 +67,7 @@ app:
     - search
 
 worker:
-  build: .
+  image: fe9ca871c86e
   volumes_from:
     - app
   env_file:
