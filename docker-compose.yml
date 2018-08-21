@@ -50,7 +50,8 @@ search:
   image: elasticsearch:1
 
 app:
-  image: fe9ca871c86e
+  image: parisson/telemeta:1.7
+  #image: fe9ca871c86e
   volumes:
     - ./app:/srv/app
     - ./telemeta:/srv/src/telemeta/telemeta
@@ -67,7 +68,8 @@ app:
     - search
 
 worker:
-  image: fe9ca871c86e
+  image: parisson/telemeta:1.7
+  #image: fe9ca871c86e
   volumes_from:
     - app
   env_file:

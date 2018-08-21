@@ -181,7 +181,6 @@ INSTALLED_APPS = (
     'djcelery',
     'haystack',
     'djangobower',
-    'djng',
     'saved_searches',
     'django_select2',
     'leaflet',
