@@ -23,7 +23,7 @@ pip uninstall -y south
 pip install -e git+https://github.com/Parisson/django-jqchat.git@dj1.8#egg=django-jqchat
 pip install django-debug-toolbar==1.6
 pip install -e git+https://github.com/Parisson/saved_searches.git@dj1.8#egg=saved_searches-2.0.0-beta
-pip install django_select2
+pip install django_select2==5.11.1 lxml django-leaflet django-geojson django-markdownx
 
 # waiting for other network services
 sh $app/scripts/wait.sh

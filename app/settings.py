@@ -368,3 +368,5 @@ BOWER_INSTALLED_APPS = (
     'leaflet.markercluster#1.1.0',
     'leaflet-control-geocoder#1.5.5'
 )
+
+AUTH_USER_MODEL = 'auth.User'
